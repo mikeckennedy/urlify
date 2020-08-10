@@ -7,7 +7,7 @@ from converter import to_url_style
 
 class UrlifyApp(rumps.App):
     @rumps.clicked("🌟 Convert Text")
-    def sayhi(self, _):
+    def urlify_command(self, _):
         successful, message = update_text()
         if successful:
             rumps.notification("urlify 📋", "Updated clipboard text", message)
@@ -34,7 +34,7 @@ def update_text():
                Fore.WHITE + "Copied to clipboard 📋")
         pyperclip.copy(url_text)
         print(msg)
-        return True, msg
+        return True, url_text
 
     except Exception as x:
         msg = f"⚠️⚠️⚠️⚠️   Error: Unexpected crash: {x}."
