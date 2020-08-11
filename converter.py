@@ -16,3 +16,17 @@ def to_url_style(text):
         url_txt = url_txt.replace('--', '-')
 
     return url_txt.lower().strip()
+
+
+def strip(text: str):
+    if text is None:
+        return None
+
+    return text.strip()
+
+
+def lowercase(text: str):
+    if text is None:
+        return None
+
+    return text.lower()
