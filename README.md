@@ -20,7 +20,7 @@ Then here's a simple macOS menubar app that does text transforms such as these w
 
 Just download the latest release .zip file, uncompress it and copy `urlify.app` into your Applications folder. 
 
-Latest release at: [github.com/mikeckennedy/urlify/releases](https://github.com/mikeckennedy/urlify/releases)
+Latest release at: [github.com/mikeckennedy/urlify/releases](https://github.com/mikeckennedy/urlify/releases/latest)
 
 If you want URLify to start when you login, 
 just [follow these steps](https://www.idownloadblog.com/2015/03/24/apps-launch-system-startup-mac/):
