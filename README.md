@@ -8,11 +8,11 @@ A simple macOS app to create valid file and url names from clipboard text.
 
 If you ever need to take text like this:
 
-**"Fastest drivers' times"**
+**Fastest drivers' times**
 
 And convert it to something you could use in a URL or filename, such as:
 
-**"fastest-drivers-times"**
+**fastest-drivers-times**
 
 Then here's a simple macOS menubar app that does text transforms such as these with a single click. It just takes the text in the clipboard and replaces it with a filename friendly version.
 
