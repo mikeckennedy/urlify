@@ -30,3 +30,9 @@ just [follow these steps](https://www.idownloadblog.com/2015/03/24/apps-launch-s
 3. Click Login Items
 4. Click the ‘+‘ sign and find urlify.app
 5. click the Add button
+
+## Launching app
+
+The first time you download the app, macOS may give you a warning that the developer is not verified and it can't run. You're welcome to heed that warning, but if you trust it enough, right-click and choose open rather than double-clicking it and then you'll get a prompt where you can run anyway.
+
+After running once, macOS will allow it to run without complaining afterwards.
