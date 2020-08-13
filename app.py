@@ -6,6 +6,8 @@ from colorama import Fore
 
 import converter
 
+VERSION = "2020.08.00"
+
 
 class UrlifyApp(rumps.App):
     @rumps.clicked("🌟 URLify Text")
@@ -35,8 +37,12 @@ class UrlifyApp(rumps.App):
     @rumps.clicked("About URLify")
     def about_command(self, _):
         msg = "URLify is a little application that quickly cleans up text so you can use it in other locations " \
-              "(e.g. convert a title to a file name).\n\nIt's created by Michael Kennedy and is built with Python 3."
-        rumps.alert(message=msg, title="About URLify")
+              "(e.g. convert a title to a file name).\n\n" \
+              "It's created by Michael Kennedy and is built with Python 3 and RUMPS. " \
+              "\n" \
+              "\n" \
+              "Updates at https://github.com/mikeckennedy/urlify"
+        rumps.alert(message=msg, title=f"URLify v{VERSION}")
 
     @rumps.clicked("__________________")
     def divider_command(self, _):
