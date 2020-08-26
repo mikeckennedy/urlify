@@ -36,3 +36,15 @@ just [follow these steps](https://www.idownloadblog.com/2015/03/24/apps-launch-s
 The first time you download the app, macOS may give you a warning that the developer is not verified and it can't run. You're welcome to heed that warning, but if you trust it enough, right-click and choose open rather than double-clicking it and then you'll get a prompt where you can run anyway.
 
 After running once, macOS will allow it to run without complaining afterwards.
+
+## Building locally
+
+If you want to build the app from source, it's pretty standard Python:
+
+```bash
+# Create and activate a virtual environment
+$ pip install -r requirements.txt
+$ python build_app.py py2app 
+```
+
+The output `.app` file will be the `dist` folder.
