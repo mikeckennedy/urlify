@@ -30,3 +30,10 @@ def lowercase(text: str):
         return None
 
     return text.lower()
+
+
+def uppercase(text: str):
+    if text is None:
+        return None
+
+    return text.upper()

@@ -6,7 +6,7 @@ from colorama import Fore
 
 import converter
 
-VERSION = "2020.08.00"
+VERSION = "2020.08.02"
 
 
 class UrlifyApp(rumps.App):
@@ -30,9 +30,17 @@ class UrlifyApp(rumps.App):
     def lowercase_command(self, _):
         successful, message = update_text(converter.lowercase)
         if successful:
-            rumps.notification("stripped 📋", "Updated clipboard text", message)
+            rumps.notification("lowercased 📋", "Updated clipboard text", message)
         else:
-            rumps.notification("stripped 📋", "Error, count not convert", message)
+            rumps.notification("lowercased 📋", "Error, count not convert", message)
+
+    @rumps.clicked("↥ Uppercase Text")
+    def uppercase_command(self, _):
+        successful, message = update_text(converter.uppercase)
+        if successful:
+            rumps.notification("uppercased 📋", "Updated clipboard text", message)
+        else:
+            rumps.notification("uppercased 📋", "Error, count not convert", message)
 
     @rumps.clicked("About URLify")
     def about_command(self, _):
