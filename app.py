@@ -6,7 +6,7 @@ from colorama import Fore
 
 import converter
 
-VERSION = "2020.11.13"
+VERSION = "2021.9.4"
 
 
 class UrlifyApp(rumps.App):
@@ -18,7 +18,7 @@ class UrlifyApp(rumps.App):
         else:
             rumps.notification("urlify 📋", "Error, count not convert", message)
 
-    @rumps.clicked("↹ Trim Text")
+    @rumps.clicked("↹  Trim Text")
     def trim_command(self, _):
         successful, message = update_text(converter.strip)
         if successful:
@@ -26,7 +26,7 @@ class UrlifyApp(rumps.App):
         else:
             rumps.notification("stripped 📋", "Error, count not convert", message)
 
-    @rumps.clicked("↧ Lowercase Text")
+    @rumps.clicked("↧    Lowercase Text")
     def lowercase_command(self, _):
         successful, message = update_text(converter.lowercase)
         if successful:
@@ -34,13 +34,21 @@ class UrlifyApp(rumps.App):
         else:
             rumps.notification("lowercased 📋", "Error, count not convert", message)
 
-    @rumps.clicked("↥ Uppercase Text")
+    @rumps.clicked("↥    Uppercase Text")
     def uppercase_command(self, _):
         successful, message = update_text(converter.uppercase)
         if successful:
             rumps.notification("uppercased 📋", "Updated clipboard text", message)
         else:
             rumps.notification("uppercased 📋", "Error, count not convert", message)
+
+    @rumps.clicked("🧾 Excel friendly")
+    def excel_command(self, _):
+        successful, message = update_text(converter.excel_friendly)
+        if successful:
+            rumps.notification("Excelified 📋", "Updated clipboard text", message)
+        else:
+            rumps.notification("Excelified 📋", "Error, count not convert", message)
 
     @rumps.clicked("About URLify")
     def about_command(self, _):

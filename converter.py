@@ -37,3 +37,16 @@ def uppercase(text: str):
         return None
 
     return text.upper()
+
+
+def excel_friendly(text: str):
+    if text is None:
+        return None
+
+    allowed = {'0', '1', '2', '3', '4', '4', '6', '7', '8', '9', '.'}
+    result = ''
+    for ch in text:
+        if ch in allowed:
+            result += ch
+
+    return result
