@@ -43,7 +43,7 @@ def excel_friendly(text: str):
     if text is None:
         return None
 
-    allowed = {'0', '1', '2', '3', '4', '4', '6', '7', '8', '9', '.'}
+    allowed = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'}
     result = ''
     for ch in text:
         if ch in allowed:

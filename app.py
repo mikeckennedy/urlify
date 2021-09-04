@@ -6,7 +6,7 @@ from colorama import Fore
 
 import converter
 
-VERSION = "2021.9.4"
+VERSION = "2021.9.4-2"
 
 
 class UrlifyApp(rumps.App):
