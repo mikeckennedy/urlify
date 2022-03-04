@@ -73,11 +73,6 @@ def update_text(action: Callable):
             print(msg)
             return False, msg
 
-        if len(text) > 300:
-            msg = Fore.LIGHTRED_EX + f"⚠️ ERROR: The text was really long, too long: {len(text):,}..."
-            print(msg)
-            return False, msg
-
         url_text = action(text)
         msg = (Fore.WHITE + f"Original '{text}'\n" +
                Fore.LIGHTYELLOW_EX + "Converted text to " + Fore.LIGHTGREEN_EX + f"'{url_text}' 🌟🌟🌟✨\n" +
