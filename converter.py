@@ -1,4 +1,7 @@
-def to_url_style(text):
+from typing import Optional
+
+
+def to_url_style(text: str) -> Optional[str]:
     if not text:
         return text
 
@@ -18,28 +21,28 @@ def to_url_style(text):
     return url_txt.lower().strip()
 
 
-def strip(text: str):
+def strip(text: str) -> Optional[str]:
     if text is None:
         return None
 
     return text.strip()
 
 
-def lowercase(text: str):
+def lowercase(text: str) -> Optional[str]:
     if text is None:
         return None
 
     return text.lower()
 
 
-def uppercase(text: str):
+def uppercase(text: str) -> Optional[str]:
     if text is None:
         return None
 
     return text.upper()
 
 
-def excel_friendly(text: str):
+def excel_friendly(text: str) -> Optional[str]:
     if text is None:
         return None
 
@@ -50,3 +53,17 @@ def excel_friendly(text: str):
             result += ch
 
     return result
+
+
+def capitalize_all(text: str) -> Optional[str]:
+    if text is None:
+        return None
+
+    return ' '.join(w.capitalize() for w in text.split(' '))
+
+
+def capitalize_first(text: str) -> Optional[str]:
+    if text is None:
+        return None
+
+    return text.capitalize()

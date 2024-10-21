@@ -6,7 +6,7 @@ from colorama import Fore
 
 import converter
 
-VERSION = "2021.9.4-2"
+VERSION = "2024.10.1"
 
 
 class UrlifyApp(rumps.App):
@@ -45,6 +45,22 @@ class UrlifyApp(rumps.App):
     @rumps.clicked("🧾 Excel friendly")
     def excel_command(self, _):
         successful, message = update_text(converter.excel_friendly)
+        if successful:
+            rumps.notification("Excelified 📋", "Updated clipboard text", message)
+        else:
+            rumps.notification("Excelified 📋", "Error, count not convert", message)
+
+    @rumps.clicked("Aa aa - Capitalize")
+    def capitalize_command(self, _):
+        successful, message = update_text(converter.capitalize_first)
+        if successful:
+            rumps.notification("Excelified 📋", "Updated clipboard text", message)
+        else:
+            rumps.notification("Excelified 📋", "Error, count not convert", message)
+
+    @rumps.clicked("Aa Aa - Capitalize All")
+    def capitalize_all_command(self, _):
+        successful, message = update_text(converter.capitalize_all)
         if successful:
             rumps.notification("Excelified 📋", "Updated clipboard text", message)
         else:
