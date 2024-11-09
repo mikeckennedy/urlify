@@ -2,12 +2,8 @@ import io
 import os
 import re
 
+from setuptools import find_packages
 from setuptools import setup
-
-"""
-Usage:
-    python setup.py py2app
-"""
 
 
 def read(filename):
@@ -19,20 +15,29 @@ def read(filename):
 
 APP = ["app.py"]
 DATA_FILES = []
-OPTIONS = {}
+OPTIONS = {
+    'argv_emulation': True,
+    'iconfile': 'urlify.icns',
+    'plist': {
+        'LSUIElement': True,
+    },
+    'packages': ['rumps', 'pyperclip', 'pyperclip', 'colorama'],
+}
 
 setup(
     name="urlify",
+    version="2024.10.1",
     app=APP,
-    data_files=DATA_FILES,
     options={"py2app": OPTIONS},
     setup_requires=["py2app"],
     url="https://github.com/mikeckennedy/urlify",
-    description="A simple macOS app to create file and url names from clipboard text.",
-    long_description=read("README.md"),
     license="MIT",
     author="Michael Kennedy",
     author_email="michael@talkpython.fm",
+    description="A simple macOS app to create file and url names from clipboard text.",
+    long_description=read("README.md"),
+    packages=find_packages(exclude=("tests",)),
+    install_requires=[],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "License :: OSI Approved :: MIT License",
