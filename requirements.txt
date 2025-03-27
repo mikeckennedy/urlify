@@ -11,15 +11,15 @@ macholib==1.16.3
     # via py2app
 modulegraph==0.19.6
     # via py2app
-py2app==0.26.1
+py2app==0.24
     # via -r requirements.piptools
-pyobjc-core==10.3.1
+pyobjc-core==11.0
     # via pyobjc-framework-cocoa
-pyobjc-framework-cocoa==10.3.1
+pyobjc-framework-cocoa==11.0
     # via rumps
 pyperclip==1.9.0
     # via -r requirements.piptools
 rumps==0.4.0
     # via -r requirements.piptools
-setuptools==75.2.0
+setuptools==78.1.0
     # via modulegraph
