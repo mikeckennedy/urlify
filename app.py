@@ -18,6 +18,14 @@ class UrlifyApp(rumps.App):
         else:
             rumps.notification("urlify 📋", "Error, count not convert", message)
 
+    @rumps.clicked("🌐 Remove query string")
+    def trim_command(self, _):
+        successful, message = update_text(converter.strip_querystring_from_url)
+        if successful:
+            rumps.notification("qs removed 📋", "Updated clipboard text", message)
+        else:
+            rumps.notification("qs error 📋", "Error, count not convert", message)
+
     @rumps.clicked("↹  Trim Text")
     def trim_command(self, _):
         successful, message = update_text(converter.strip)

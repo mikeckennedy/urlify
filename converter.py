@@ -67,3 +67,13 @@ def capitalize_first(text: str) -> Optional[str]:
         return None
 
     return text.capitalize()
+
+
+def strip_querystring_from_url(url: str) -> Optional[str]:
+    if url is None:
+        return None
+
+    if '?' not in url:
+        return url
+
+    return url.split('?')[0]
