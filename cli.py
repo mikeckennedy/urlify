@@ -15,7 +15,7 @@ from colorama import Fore, Style, init as colorama_init
 import pyperclip
 import converter
 
-VERSION = "2025.3"
+VERSION = "2025.4"
 
 # Initialize colorama for cross-platform colored output
 colorama_init(autoreset=True)
