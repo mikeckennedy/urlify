@@ -40,8 +40,6 @@ def get_input_text(args) -> Optional[str]:
         except Exception as e:
             print(f"{Fore.LIGHTRED_EX}⚠️ ERROR: Could not access clipboard: {e}")
             return None
-    else:
-        return None
 
 
 def output_result(result: str, original: str, operation: str, args) -> None:
@@ -101,7 +99,7 @@ def add_common_arguments(parser):
         "--clipboard",
         "-c",
         action="store_true",
-        help="Force reading from clipboard (default if no other input)",
+        help="Read from clipboard (this is the default)",
     )
 
     # Output options
@@ -127,9 +125,10 @@ def create_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  %(prog)s urlify --text "Hello World!"
-  %(prog)s lowercase --clipboard
-  echo "SOME TEXT" | %(prog)s uppercase
+  %(prog)s --text "Hello World!"                          # urlify (default) with text input
+  %(prog)s                                                # urlify (default) with clipboard input (default)
+  %(prog)s lowercase --text "HELLO WORLD"                 # lowercase with text input
+  echo "SOME TEXT" | %(prog)s uppercase                   # uppercase with stdin input
   %(prog)s trim --text "  spaced text  " --copy-to-clipboard
   %(prog)s remove-query --text "https://example.com?param=value"
   
@@ -137,6 +136,8 @@ Input sources (in order of priority):
   1. --text argument
   2. stdin (piped input)
   3. clipboard (default)
+  
+Default command: urlify (if no command specified)
         """,
     )
 
@@ -144,7 +145,9 @@ Input sources (in order of priority):
 
     # Subcommands for each conversion type
     subparsers = parser.add_subparsers(
-        dest="command", help="Available conversion commands", metavar="COMMAND"
+        dest="command",
+        help="Available conversion commands (default: urlify)",
+        metavar="[COMMAND]",
     )
 
     # URLify command
@@ -207,12 +210,42 @@ Input sources (in order of priority):
 
 def main():
     """Main CLI entry point."""
+    # Check if no command provided and add default
+    commands = [
+        "urlify",
+        "remove-query",
+        "rq",
+        "trim",
+        "lowercase",
+        "lower",
+        "lc",
+        "uppercase",
+        "upper",
+        "uc",
+        "excel-friendly",
+        "excel",
+        "capitalize-first",
+        "cap-first",
+        "cf",
+        "capitalize-all",
+        "cap-all",
+        "ca",
+    ]
+
+    # Check for global options that don't need a command
+    global_only_args = {"--help", "-h", "--version"}
+    has_global_only = any(arg in global_only_args for arg in sys.argv[1:])
+
+    if len(sys.argv) == 1:
+        # No arguments at all, use default command with clipboard
+        sys.argv.append("urlify")
+    elif not has_global_only and not any(arg in commands for arg in sys.argv[1:]):
+        # Arguments provided but no command and no global-only args
+        # Insert urlify at the beginning of arguments (after script name)
+        sys.argv.insert(1, "urlify")
+
     parser = create_parser()
     args = parser.parse_args()
-
-    if not args.command:
-        parser.print_help()
-        sys.exit(1)
 
     # Map commands to converter functions and descriptions
     command_map = {
