@@ -10,7 +10,7 @@ or as arguments, and output can go to stdout or clipboard.
 import sys
 import argparse
 from typing import Optional, Callable
-from colorama import Fore, init as colorama_init
+from colorama import Fore, Style, init as colorama_init
 
 import pyperclip
 import converter
@@ -19,6 +19,88 @@ VERSION = "2025.3"
 
 # Initialize colorama for cross-platform colored output
 colorama_init(autoreset=True)
+
+
+class ColoredHelpFormatter(argparse.RawDescriptionHelpFormatter):
+    """Custom help formatter that adds colors to help output."""
+
+    def _format_usage(self, usage, actions, groups, prefix):
+        if prefix is None:
+            prefix = f"{Fore.CYAN}usage: {Style.RESET_ALL}"
+        return super()._format_usage(usage, actions, groups, prefix)
+
+    def format_help(self):
+        help_text = super().format_help()
+
+        # Color different sections
+        help_text = help_text.replace(
+            "positional arguments:",
+            f"{Fore.GREEN}positional arguments:{Style.RESET_ALL}",
+        )
+        help_text = help_text.replace(
+            "options:", f"{Fore.GREEN}options:{Style.RESET_ALL}"
+        )
+        help_text = help_text.replace(
+            "Input options:", f"{Fore.GREEN}Input options:{Style.RESET_ALL}"
+        )
+        help_text = help_text.replace(
+            "Output options:", f"{Fore.GREEN}Output options:{Style.RESET_ALL}"
+        )
+
+        # Color command names in the command list
+        lines = help_text.split("\n")
+        colored_lines = []
+        in_command_section = False
+
+        for line in lines:
+            if "positional arguments:" in line:
+                in_command_section = True
+                colored_lines.append(line)
+            elif line.strip() and not line.startswith("  ") and in_command_section:
+                in_command_section = False
+                colored_lines.append(line)
+            elif in_command_section and line.strip() and line.startswith("    "):
+                # This is a command description line
+                parts = line.split(None, 1)
+                if len(parts) >= 2:
+                    command = parts[0]
+                    description = parts[1] if len(parts) > 1 else ""
+                    colored_line = (
+                        f"    {Fore.YELLOW}{command}{Style.RESET_ALL} {description}"
+                    )
+                    colored_lines.append(colored_line)
+                else:
+                    colored_lines.append(line)
+            else:
+                colored_lines.append(line)
+
+        help_text = "\n".join(colored_lines)
+
+        # Color examples section
+        help_text = help_text.replace(
+            "Examples:", f"{Fore.CYAN}Examples:{Style.RESET_ALL}"
+        )
+
+        # Color input sources section
+        help_text = help_text.replace(
+            "Input sources (in order of priority):",
+            f"{Fore.CYAN}Input sources (in order of priority):{Style.RESET_ALL}",
+        )
+
+        # Color default command section
+        help_text = help_text.replace(
+            "Default command:", f"{Fore.CYAN}Default command:{Style.RESET_ALL}"
+        )
+
+        return help_text
+
+
+class ColoredArgumentParser(argparse.ArgumentParser):
+    """Custom ArgumentParser that uses colored help formatter."""
+
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("formatter_class", ColoredHelpFormatter)
+        super().__init__(*args, **kwargs)
 
 
 def get_input_text(args) -> Optional[str]:
@@ -120,24 +202,23 @@ def add_common_arguments(parser):
 
 def create_parser() -> argparse.ArgumentParser:
     """Create and configure the argument parser."""
-    parser = argparse.ArgumentParser(
-        description="URLify CLI - Convert and transform text using various methods",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
+    parser = ColoredArgumentParser(
+        description=f"{Fore.CYAN}URLify CLI{Style.RESET_ALL} - Convert and transform text using various methods",
+        epilog=f"""
 Examples:
-  %(prog)s --text "Hello World!"                          # urlify (default) with text input
-  %(prog)s                                                # urlify (default) with clipboard input (default)
-  %(prog)s lowercase --text "HELLO WORLD"                 # lowercase with text input
-  echo "SOME TEXT" | %(prog)s uppercase                   # uppercase with stdin input
-  %(prog)s trim --text "  spaced text  " --copy-to-clipboard
-  %(prog)s remove-query --text "https://example.com?param=value"
+  {Fore.LIGHTGREEN_EX}%(prog)s --text "Hello World!"{Style.RESET_ALL}                          # urlify (default) with text input
+  {Fore.LIGHTGREEN_EX}%(prog)s{Style.RESET_ALL}                                                # urlify (default) with clipboard input (default)
+  {Fore.LIGHTGREEN_EX}%(prog)s lowercase --text "HELLO WORLD"{Style.RESET_ALL}                 # lowercase with text input
+  {Fore.LIGHTGREEN_EX}echo "SOME TEXT" | %(prog)s uppercase{Style.RESET_ALL}                   # uppercase with stdin input
+  {Fore.LIGHTGREEN_EX}%(prog)s trim --text "  spaced text  " --copy-to-clipboard{Style.RESET_ALL}
+  {Fore.LIGHTGREEN_EX}%(prog)s remove-query --text "https://example.com?param=value"{Style.RESET_ALL}
   
 Input sources (in order of priority):
-  1. --text argument
-  2. stdin (piped input)
-  3. clipboard (default)
+  {Fore.YELLOW}1.{Style.RESET_ALL} --text argument
+  {Fore.YELLOW}2.{Style.RESET_ALL} stdin (piped input)
+  {Fore.YELLOW}3.{Style.RESET_ALL} clipboard (default)
   
-Default command: urlify (if no command specified)
+Default command: {Fore.LIGHTYELLOW_EX}urlify{Style.RESET_ALL} (if no command specified)
         """,
     )
 
