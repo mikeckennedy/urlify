@@ -187,10 +187,10 @@ def add_common_arguments(parser):
     # Output options
     output_group = parser.add_argument_group("Output options")
     output_group.add_argument(
-        "--copy-to-clipboard",
-        "-C",
-        action="store_true",
-        help="Copy result to clipboard",
+        "--no-clipboard",
+        dest="copy_to_clipboard",
+        action="store_false",
+        help="Don't copy result to clipboard (by default, result is copied)",
     )
     output_group.add_argument(
         "--quiet",
@@ -210,7 +210,7 @@ Examples:
   {Fore.LIGHTGREEN_EX}%(prog)s{Style.RESET_ALL}                                                # urlify (default) with clipboard input (default)
   {Fore.LIGHTGREEN_EX}%(prog)s lowercase --text "HELLO WORLD"{Style.RESET_ALL}                 # lowercase with text input
   {Fore.LIGHTGREEN_EX}echo "SOME TEXT" | %(prog)s uppercase{Style.RESET_ALL}                   # uppercase with stdin input
-  {Fore.LIGHTGREEN_EX}%(prog)s trim --text "  spaced text  " --copy-to-clipboard{Style.RESET_ALL}
+  {Fore.LIGHTGREEN_EX}%(prog)s trim --text "  spaced text  " --no-clipboard{Style.RESET_ALL}
   {Fore.LIGHTGREEN_EX}%(prog)s remove-query --text "https://example.com?param=value"{Style.RESET_ALL}
   
 Input sources (in order of priority):
