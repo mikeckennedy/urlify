@@ -13,13 +13,13 @@ modulegraph==0.19.6
     # via py2app
 py2app==0.24
     # via -r requirements.piptools
-pyobjc-core==11.0
+pyobjc-core==11.1
     # via pyobjc-framework-cocoa
-pyobjc-framework-cocoa==11.0
+pyobjc-framework-cocoa==11.1
     # via rumps
-pyperclip==1.9.0
+pyperclip==1.10.0
     # via -r requirements.piptools
 rumps==0.4.0
     # via -r requirements.piptools
-setuptools==78.1.0
+setuptools==80.9.0
     # via modulegraph
