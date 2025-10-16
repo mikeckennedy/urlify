@@ -131,3 +131,5 @@ misc.xml
 urlify.iml
 /.idea/workspace.xml
 /.idea/inspectionProfiles/Project_Default.xml
+
+.ruff_cache

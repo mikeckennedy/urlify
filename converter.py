@@ -12,7 +12,7 @@ def to_url_style(text: str) -> Optional[str]:
     for ch in text:
         url_txt += ch if ch.isalnum() or ch == '.' else ' '
 
-    count = -1
+    count: int = -1
     while count != len(url_txt):
         count = len(url_txt)
         url_txt = url_txt.strip()
