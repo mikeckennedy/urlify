@@ -13,7 +13,7 @@ OPTIONS = {
 
 
 setup(
-    name="urlify",
+    name='urlify',
     app=APP,
     data_files=DATA_FILES,
     options={
