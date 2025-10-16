@@ -6,6 +6,8 @@ def to_url_style(text: str) -> Optional[str]:
         return text
 
     text = text.strip()
+    text = text.replace("'", "")  # Let's go! -> lets-go
+
     url_txt = ''
     for ch in text:
         url_txt += ch if ch.isalnum() or ch == '.' else ' '
@@ -14,6 +16,7 @@ def to_url_style(text: str) -> Optional[str]:
     while count != len(url_txt):
         count = len(url_txt)
         url_txt = url_txt.strip()
+        
         url_txt = url_txt.replace('  ', ' ')
         url_txt = url_txt.replace(' ', '-')
         url_txt = url_txt.replace('--', '-')

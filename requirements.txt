@@ -17,7 +17,7 @@ pyobjc-core==11.1
     # via pyobjc-framework-cocoa
 pyobjc-framework-cocoa==11.1
     # via rumps
-pyperclip==1.10.0
+pyperclip==1.11.0
     # via -r requirements.piptools
 rumps==0.4.0
     # via -r requirements.piptools
