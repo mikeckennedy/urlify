@@ -209,7 +209,7 @@ Input sources (in order of priority):
   {Fore.YELLOW}3.{Style.RESET_ALL} clipboard (default)
   
 Default command: {Fore.LIGHTYELLOW_EX}urlify{Style.RESET_ALL} (if no command specified)
-        """,
+        """,  # noqa: E501
     )
 
     parser.add_argument('--version', action='version', version=f'URLify CLI v{VERSION}')
