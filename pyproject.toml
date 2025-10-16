@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "urlify"
-version = "2024.10.1"
+version = "2025.10.16"
 description = "A simple macOS app to create file and url names from clipboard text."
 readme = "README.md"
 requires-python = ">=3.10"
