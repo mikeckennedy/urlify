@@ -133,3 +133,8 @@ urlify.iml
 /.idea/inspectionProfiles/Project_Default.xml
 
 .ruff_cache
+
+
+# For now
+.agent-*
+AGENTS.md
