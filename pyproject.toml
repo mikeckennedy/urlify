@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61.0", "py2app"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "urlify"
+version = "2024.10.1"
+description = "A simple macOS app to create file and url names from clipboard text."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Michael Kennedy", email = "michael@talkpython.fm"}
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+    "rumps",
+    "py2app==0.24",
+    "pyperclip",
+    "colorama",
+]
+
+[project.urls]
+Homepage = "https://github.com/mikeckennedy/urlify"
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+
+[tool.py2app]
+# Configuration for building macOS app bundle
+app = ["app.py"]
+iconfile = "urlify.icns"
+argv_emulation = true
+packages = ["rumps", "pyperclip", "colorama"]
+
+[tool.py2app.plist]
+LSUIElement = true
+

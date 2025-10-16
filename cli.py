@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 URLify CLI - Command line version of the URLify text conversion tool.
 
